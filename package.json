@@ -1,0 +1,26 @@
+{
+  "name": "TheNebron",
+  "version": "1.0.1",
+  "description": "thing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "discord.js": "^11.5.2",
+    "dotenv": "^8.0.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/template-discord-bot"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
