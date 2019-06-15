@@ -2,32 +2,32 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 
-
 const token = 'NTg4ODk0MDE4NTg3NTkwNjg4.XQLy4g.S1YlZCVH7h6_hSkZKqBPGA9nJ5E';
 
 const PREFIX = '!';
 
+const version = '1.2.1';
+
+const creater = 'Created By Captain_Rich!'
 
 bot.on('ready', () =>{
     console.log('This bot is online!');
-    bot.user.setActivity(' Over TheNebron!', { type: 'WATCHING'}).catch(console.error);
+    bot.user.setAactivity(' Over TheNebron!', { type: 'WATCHING'}).catch(console.error);
     bot.user.setStatus('dnd')
 
 })
 
 
-
-
  bot.on('message', message=>{
     if(message.content === 'hello'){
-      message.reply('Hello!');
+      message.reply('Hello!')
     }
-       
-    let args = message.content.substring(PREFIX.length).split(" ");
+
+    const args = message.content.substring(PREFIX.length).split(" ");
 
 
     switch(args[0]){
-        case 'ping':
+      case 'ping':
            message.channel.sendMessage('Pong!')
            break;
         case 'channel':
@@ -41,32 +41,57 @@ bot.on('ready', () =>{
                .setTitle('**Commands**')
                .addField('!ping ', 'SAYS PONG OMG SOOOO COOL')
                .addField('!help ', 'Help = Help')
-               .addField('!flipacoin ', 'Flips a coin!')
+               .addField('!dice help ', 'YOU NEED TO READ THIS')
+               .addField('!coinflip ', 'Flips a coin!')
                .addField('!channel ', 'Link to my Youtube channel!')
                .addField('!info bot ', 'You will recieve all bot infomation.')
+               .addField('!server info ', 'You will recieve all server infomation.')
                .addField('!support ', 'You will recieve an invite to our support server!')
                .addField('**Moderator Commands** ', 'Need Certain Roles')
                .addField('!kick [player] ', 'Command used to kick a player.')
                .addField('!clear [args] ', 'Command used to clear a certain amount of messages...')
-               .setColor(0x23DAF4)
+               .addField('**Games!** ', 'WOOO!')
+               .addField('!dicegame ', 'Objective is to get exacly 100!')
+               .setColor(0x29AF4)
                .setFooter('Join Our Support Server For Questions! (!support)')
                message.channel.sendEmbed(embed)
             break;
         case 'info':
             if(args[1] == 'bot'){
                 const embed = new Discord.RichEmbed()
-                .setTitle('Server Infomation')
-                .addField('Current Server', message.guild.name)
-                .addField('Version ', '1.1.0')
+                .setTitle('Bot Infomation')
+                .addField('Creater ', 'Captain_Rich#1366')
+                .addField('Version ', version)
+                .addField('Prefix ', 'You may use any letter, or symbol as your prefix. (Ex: @help)')
                 .setColor(0x26DAF4)
                 .setThumbnail(message.author.avatarURL)
                 .setFooter('Created By Captain_Rich!')
                 message.channel.sendEmbed(embed)
             break;
-            }else{
-                message.channel.sendMessage('Invalid Args')
             }
+          case 'dice':
+            if(args[1] == 'help'){
+                const embed = new Discord.RichEmbed()
+                .setTitle('Game Infomation')
+                .addField('Rules ', 'Just roll the dice ;-; (!dicegame = roll) and uh try to get 100 :wink:')
+                .addField('*PS* ', '*YOU CANT WIN :P*')
+                .setColor(0x59DAF4)
+                .setFooter('Created By Captain_Rich!')
+                message.channel.sendEmbed(embed)
             break;
+            }
+        case 'server':
+            if(args[1] == 'info'){
+                const embed = new Discord.RichEmbed()
+                .setTitle('Server Infomation')
+                .addField('Current Server', message.guild.name)
+                .addField('Server Size ', message.guild.memberCount)
+                .setColor(0x26DAF4)
+                .setThumbnail(message.author.avatarURL)
+                .setFooter(creater)
+                message.channel.sendEmbed(embed)
+            break;
+            }
         case 'clear':
                 if(!message.member.roles.find(r => r.name === "BotPermissions")) return message.channel.send('**YOU DONT HAVE PERMISSIONS.** :O')
             if(!args[1]) return message.reply('Error please define the second arg.')
@@ -94,9 +119,17 @@ bot.on('ready', () =>{
                 message.reply('You need to specify a person!')
             }
 
+         break;
+    
+      case '!dicegame':
+      var roll = (Math.floor(Math.random()*200)+1);
+      message.channel.send('This roll is: ' + roll);
+      if (roll <=100){message.reply('Thats not enough, keep rolling')} 
+      else{message.reply('Uuuuuh thots over 100 :P twy tu got ezacly 100 pwease okay? *DO !DICE HELP U REALLY NEED IT')} 
+        
         break;
         
-       case 'flipacoin':
+       case '!coinflip':
 { 
       function doRandHT() {
             var rand = ['HEADS!','TAILS!'];
@@ -110,8 +143,6 @@ bot.on('ready', () =>{
             "color": 7584788,
 };
             message.channel.send({ embed });
-
-
 };
         
     }
